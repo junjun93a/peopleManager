@@ -22,9 +22,13 @@
         <span id="span_name"></span><br/></div>
     <div id="div2">密码：<input type="password" name="T_PASS" id="password" onblur="checkPassword()" required placeholder="请输入账号密码">
         <span id="span_password"></span><br/></div>
+    类　别: <input  type="radio" name="log" value="visitor" checked>游客
+    <input  type="radio" name="log" value="staff">员工
+    <input  type="radio" name="log" value="admin">管理员
+    <br/>
     <%--<div id="div3"><input type="checkbox" name="relog" value="on">记住密码</div>--%>
-    <input id="input1" type="submit" value="登陆" onclick="return checkAll()">
-
+    <input id="input1" type="submit" value="登陆" onclick="return checkAll()"><br/>
+    <a href="toindex">返回</a>
     <script>
         function checkName() {
             var username = document.getElementById("username");

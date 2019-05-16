@@ -32,4 +32,16 @@ public class VisitorServiceImpl implements VisitorService {
         }
         return visitorDao.selectvisitorbyaccountpass(visitor);
     }
+
+    public boolean selectvisitorbyaccount(Visitor visitor) {
+        if(visitor==null ){
+            return false;
+        }
+        Visitor v = visitorDao.selectvisitorbyaccount(visitor);
+        if(v==null){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

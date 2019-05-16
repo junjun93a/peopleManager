@@ -18,6 +18,11 @@ public class Visitor {
         T_NAME = t_NAME;
     }
 
+    public Visitor(String t_ACCOUNT, String t_PASS) {
+        T_ACCOUNT = t_ACCOUNT;
+        T_PASS = t_PASS;
+    }
+
     public Integer getT_ID() {
         return T_ID;
     }
