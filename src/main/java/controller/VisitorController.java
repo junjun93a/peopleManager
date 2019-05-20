@@ -1,9 +1,11 @@
 package controller;
 
+import model.Admin;
 import model.Visitor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import service.AdminService;
 import service.VisitorService;
 
 import javax.annotation.Resource;
@@ -16,6 +18,9 @@ public class VisitorController {
 
     @Resource
     private VisitorService visitorService;
+
+    @Resource
+    private AdminService adminService;
 
     @RequestMapping("loginv")
     public String loginv(String T_ACCOUNT,String T_PASS, String log,HttpSession session, HttpServletResponse resp)throws Exception{
@@ -30,8 +35,16 @@ public class VisitorController {
             }
             return "loginview";
         }else if(log.equals("staff")){
+
+
             return "loginview";
         }else if(log.equals("admin")){
+            Admin admin=new Admin(T_ACCOUNT,T_PASS);
+            Admin admin1 = adminService.adminlogin(admin);
+            if(admin1!=null){
+                session.setAttribute("admin",admin1);
+                return "forward:toadmin";
+            }
             return "loginview";
         }else {
             return "loginview";
@@ -52,11 +65,13 @@ public class VisitorController {
     }
 
     @RequestMapping("registerS")
-    public void RegisterServlet(Visitor visitor,HttpServletRequest req, HttpServletResponse resp)throws Exception{
+    public void RegisterServlet(String T_ACCOUNT,Visitor visitor,HttpServletRequest req, HttpServletResponse resp)throws Exception{
         resp.setContentType("text/html;charset=UTF-8");
+        System.out.println(T_ACCOUNT);
+        System.out.println(visitor);
         if("checkname".equals(req.getParameter("method"))){
-            if(visitor.getT_ACCOUNT()==null){
-                resp.getWriter().write("-1");//有用户
+            if(T_ACCOUNT==null){
+                resp.getWriter().write("-1");
             }
             else if(visitorService.selectvisitorbyaccount(visitor)){
                 resp.getWriter().write("0");//有用户

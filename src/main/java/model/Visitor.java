@@ -74,6 +74,7 @@ public class Visitor {
     @Override
     public String toString() {
         return "Visitor{" +
+                "id='" + T_ID + '\'' +
                 "T_ACCOUNT='" + T_ACCOUNT + '\'' +
                 ", T_PASS='" + T_PASS + '\'' +
                 ", T_SEX='" + T_SEX + '\'' +

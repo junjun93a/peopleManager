@@ -16,7 +16,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="registerS" method="post" onsubmit="return checkAll()">
+<form action="registerS" method="post">
     账 户 名:<input type="text" name="T_ACCOUNT" id="username"  required placeholder="请输入注册账号"/>
     <span id="span_name"></span><br/>
 
@@ -40,7 +40,7 @@
             var a=$("#username").val();
             var reg=/^[a-zA-Z_].{4,9}$/;
             if(reg.test(a)){
-                $.post("registerS",{username:$("#username").val(),method:"checkname"},function (obj) {
+                $.post("registerS",{T_ACCOUNT:$("#username").val(),method:"checkname"},function (obj) {
                     if(obj==1){
                         $("#span_name").html("账户名已存在");
                         $("#span_name").css({"color":"red","face":"仿宋","font-size":"10px"});
@@ -93,13 +93,13 @@
         $("#realname").keyup(function () {
             var realname=$("#realname").val();
             var reg=/^[\xa0-\xff]{2,4}$/;
-            if(reg.test(realname)){
-                $("span_realname").html("OK√");
-                $("#s-password2").css({"color":"green","face":"仿宋","font-size":"16px"})
+            if(!reg.test(realname)){
+                $("#span_realname").html("OK√");
+                $("#span_realname").css({"color":"green","face":"仿宋","font-size":"16px"})
                 $("#butt").attr("disabled",false);
             }else {
-                $("span_realname").html("姓名格式错误");
-                $("#s-password2").css({"color":"red","face":"仿宋","font-size":"10px"})
+                $("#span_realname").html("姓名格式错误");
+                $("#span_realname").css({"color":"red","face":"仿宋","font-size":"10px"})
                 $("#butt").attr("disabled",true);
             }
         })

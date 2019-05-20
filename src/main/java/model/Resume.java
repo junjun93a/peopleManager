@@ -172,9 +172,9 @@ public class Resume {
 
     @Override
     public String toString() {
-        return "Resume{" +
+        return "简历：{" +
 
-                ", 生日=" + T_BIRTHDAY +
+                ", 生日=" + getT_BIRTHDAYS() +
                 ", 电话=" + T_PHONE +
                 ", 邮箱='" + T_EMAIL + '\'' +
                 ", 地址='" + T_ADDRESS + '\'' +

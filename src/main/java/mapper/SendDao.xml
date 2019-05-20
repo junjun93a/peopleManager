@@ -5,10 +5,13 @@
 <mapper namespace="dao.SendDao">
 
     <insert id="insertSend">
-        insert into P_SEND (T_IDRECRUIT, T_IDVISITOR, T_IDRESUME, T_STATE, T_TIME) VALUES (#{T_IDRECRUIT}，#{T_IDVISITOR},#{T_IDRESUME},#{T_STATE},#{T_TIME})
+        insert into P_SEND (T_IDRECRUIT, T_IDVISITOR, T_IDRESUME, T_STATE,T_RECRUITDE,T_RESUMEDE) VALUES (#{T_IDRECRUIT},#{T_IDVISITOR},#{T_IDRESUME},#{T_STATE},#{T_RECRUITDE},#{T_RESUMEDE})
     </insert>
     <update id="updateSend">
-        UPDATE P_SEND SET T_IDRECRUIT=#{T_IDRECRUIT}, T_IDVISITOR=#{T_IDVISITOR}, T_IDRESUME=#{T_IDRESUME}, T_STATE=#{T_STATE}, T_TIME=#{T_TIME}
+        UPDATE P_SEND SET T_IDRECRUIT=#{T_IDRECRUIT}, T_IDVISITOR=#{T_IDVISITOR}, T_IDRESUME=#{T_IDRESUME}, T_STATE=#{T_STATE},T_RECRUITDE=#{T_RECRUITDE},T_RESUMEDE=#{T_RESUMEDE} WHERE T_ID=#{T_ID}
+    </update>
+    <update id="updateSendTime">
+        UPDATE P_SEND SET T_TIME=#{T_TIME} where T_ID=#{T_ID}
     </update>
     <delete id="deleteSend">
         DELETE FROM P_SEND WHERE T_ID=#{T_ID}
@@ -26,12 +29,17 @@
             T_STATE=#{staff}
         </if>
     </where>
-
     </select>
     <select id="selectSendbystaffvisitor" resultType="model.Send">
         SELECT * FROM P_SEND where  T_IDVISITOR=#{1} and T_STATE=#{0}
     </select>
     <select id="selectSendbyvisitor" resultType="model.Send">
-         SELECT * FROM P_SEND where  T_IDVISITOR=#{1}
+         SELECT * FROM P_SEND where  T_IDVISITOR=#{vid}
+    </select>
+    <select id="selectSendbystaffs" resultType="model.Send">
+        SELECT * FROM P_SEND where
+        <foreach collection="list" open="T_STATE in(" separator="," close=")" item="i">
+        #{i}
+    </foreach>
     </select>
 </mapper>

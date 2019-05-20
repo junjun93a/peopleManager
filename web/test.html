@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            float: left;
+
+        }
+        ul{
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+<form action="updateposition" method="post">
+    职位名称：<input name="T_NAME" type="text"><br>
+    <input type="hidden" value="<%=department.getT_ID()%>" name="did">
+    <input type="submit" value="修改">
+</form>
+</body>
+</html>

@@ -7,7 +7,7 @@ import service.SendService;
 
 import javax.annotation.Resource;
 import java.util.List;
-@Service
+@Service("sendServiceImpl")
 public class SendServiceImpl implements SendService {
 
     @Resource
@@ -35,6 +35,19 @@ public class SendServiceImpl implements SendService {
         }
         Integer i = sendDao.updateSend(send);
 
+        if(i!=0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateSendTime(Send send) {
+        if (send==null){
+            return false;
+        }
+        Integer i = sendDao.updateSendTime(send);
         if(i!=0){
             return true;
         }else {
@@ -74,7 +87,23 @@ public class SendServiceImpl implements SendService {
 
     @Override
     public List<Send> selectSendbystaff(Integer staff) {
+        if (staff==null||staff==0){
+            return null;
+        }
         return sendDao.selectSendbystaff(staff);
+    }
+
+    @Override
+    public List<Send> selectSend() {
+        return sendDao.selectSendbystaff(null);
+    }
+
+    @Override
+    public List<Send> selectSendbystaffs(List<Integer> staff) {
+        if (staff==null||staff.size()==0){
+            return null;
+        }
+        return sendDao.selectSendbystaffs(staff);
     }
 
     @Override

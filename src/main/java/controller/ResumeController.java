@@ -48,7 +48,6 @@ public class ResumeController {
     @RequestMapping("addoneresume")
     public void addresume(Resume resume, HttpServletResponse resp)throws Exception{
         resp.setContentType("text/html;charset=UTF-8");
-        System.out.println(resume);
         if(resumeService.insertResume(resume)){
             resp.getWriter().write("<script>alert(\"添加成功\");window.location.href='toresumeview';</script>");
         }else {

@@ -11,27 +11,38 @@ public class Send {
     private Integer T_IDRECRUIT;
     private Integer T_IDVISITOR;
     private Integer T_IDRESUME;
-    private Integer T_STATE;//0是刚投递，1是面试通知，2是已面试录取
+    private Integer T_STATE;//0是刚投递，1是投递已读，2是面试通知,3是已面试录取，4是已面试未录用，5放弃面试
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date T_TIME;
-
+    private String T_RECRUITDE;
+    private String T_RESUMEDE;
 
     public Send() {
     }
 
-    public Send(Integer t_IDRECRUIT, Integer t_IDVISITOR, Integer t_IDRESUME, Integer t_STATE, Date t_TIME) {
+    public Send(Integer t_IDRECRUIT, Integer t_IDVISITOR, Integer t_IDRESUME, Integer t_STATE, String t_RECRUITDE, String t_RESUMEDE) {
         T_IDRECRUIT = t_IDRECRUIT;
         T_IDVISITOR = t_IDVISITOR;
         T_IDRESUME = t_IDRESUME;
         T_STATE = t_STATE;
-        T_TIME = t_TIME;
+        T_RECRUITDE = t_RECRUITDE;
+        T_RESUMEDE = t_RESUMEDE;
     }
 
-    public Send(Integer t_IDRECRUIT, Integer t_IDVISITOR, Integer t_IDRESUME, Integer t_STATE) {
-        T_IDRECRUIT = t_IDRECRUIT;
-        T_IDVISITOR = t_IDVISITOR;
-        T_IDRESUME = t_IDRESUME;
-        T_STATE = t_STATE;
+    public String getT_RECRUITDE() {
+        return T_RECRUITDE;
+    }
+
+    public void setT_RECRUITDE(String t_RECRUITDE) {
+        T_RECRUITDE = t_RECRUITDE;
+    }
+
+    public String getT_RESUMEDE() {
+        return T_RESUMEDE;
+    }
+
+    public void setT_RESUMEDE(String t_RESUMEDE) {
+        T_RESUMEDE = t_RESUMEDE;
     }
 
     public Integer getT_ID() {
@@ -96,6 +107,8 @@ public class Send {
                 ", T_IDRESUME=" + T_IDRESUME +
                 ", T_STATE=" + T_STATE +
                 ", T_TIME=" + T_TIME +
+                ", T_RECRUITDE='" + T_RECRUITDE + '\'' +
+                ", T_RESUMEDE='" + T_RESUMEDE + '\'' +
                 '}';
     }
 }
